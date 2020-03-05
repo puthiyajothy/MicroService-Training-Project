@@ -3,6 +3,7 @@ package com.java.employee.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,11 @@ public class EmployeeController {
 	@RequestMapping(value = "/listemployee", method = RequestMethod.GET)
 	public List<Employee> listemployees() {
 		return empService.listemployees();
+	}
+	
+	@RequestMapping(value = "/listbyempid/{id}", method = RequestMethod.GET)
+	public Employee getEmployee(@PathVariable Integer id) {
+			return empService.getEmployeeById(id);
 	}
 
 }
