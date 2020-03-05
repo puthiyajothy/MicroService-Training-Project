@@ -1,47 +1,38 @@
 package com.java.employee.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="employee")
+@Table(name = "employee")
 
 public class Employee {
 
 	@Id
-	// Initialize Variable for Attribute of Employee
-	@NotEmpty
-	@Size(min = 5, max = 8)
-	@Column(name = "emp_id")
-	private String empId;
-
-	@NotEmpty
-	@Size(min = 2, max = 30)
-	@Column(name = "name")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private String emp_id;
 	private String name;
-
-	@NotEmpty
-	@Size(min = 2, max = 50)
-	@Email
-	@Column(name = "email", unique = true)
 	private String email;
-
-	@NotEmpty
-	@Size(min = 2, max = 20)
-	@Column(name = "designation")
 	private String designation;
 
-	public String getEmpId() {
-		return empId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setEmpId(String empId) {
-		this.empId = empId;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getEmp_id() {
+		return emp_id;
+	}
+
+	public void setEmp_id(String emp_id) {
+		this.emp_id = emp_id;
 	}
 
 	public String getName() {
@@ -68,7 +59,4 @@ public class Employee {
 		this.designation = designation;
 	}
 
-	
-	
-	
 }
