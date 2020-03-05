@@ -1,5 +1,74 @@
 package com.java.employee.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name="employee")
+
 public class Employee {
 
+	@Id
+	// Initialize Variable for Attribute of Employee
+	@NotEmpty
+	@Size(min = 5, max = 8)
+	@Column(name = "emp_id")
+	private String empId;
+
+	@NotEmpty
+	@Size(min = 2, max = 30)
+	@Column(name = "name")
+	private String name;
+
+	@NotEmpty
+	@Size(min = 2, max = 50)
+	@Email
+	@Column(name = "email", unique = true)
+	private String email;
+
+	@NotEmpty
+	@Size(min = 2, max = 20)
+	@Column(name = "designation")
+	private String designation;
+
+	public String getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+	
+	
+	
 }
