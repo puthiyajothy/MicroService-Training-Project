@@ -1,5 +1,7 @@
 package com.java.employee.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,11 @@ public class EmployeeController {
 	@RequestMapping(value = "/saveemployee", method = RequestMethod.POST)
 	public Employee saveemployee(@RequestBody Employee employee) {
 		return empService.saveemployee(employee);
+	}
+
+	@RequestMapping(value = "/listemployee", method = RequestMethod.GET)
+	public List<Employee> listemployees() {
+		return empService.listemployees();
 	}
 
 }
