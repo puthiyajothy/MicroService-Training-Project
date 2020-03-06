@@ -1,0 +1,25 @@
+server:
+    port: 8083
+    servlet:
+        context-path: /projectservice
+spring:
+    application:
+        name: project-service
+    datasource:
+        password: root
+        url: jdbc:mysql://localhost:3306/projectserviceDB?createDatabaseIfNotExist=true
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                default:
+                    schema: projectserviceDB
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+                format_sql: true
+                show_sql: true
+                temp:
+                    use_jdbc_metadata_defaults: false
+
+
