@@ -1,15 +1,19 @@
 package com.java.employee.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "employee")
 
-public class Employee {
+public class Employee implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +21,10 @@ public class Employee {
 	private String emp_id;
 	private String name;
 	private String email;
-	private String designation;
+	
+	@ManyToOne
+	@JoinColumn(name = "desi_id", nullable = false)
+	private Designation designation;
 
 	public Integer getId() {
 		return id;
@@ -51,12 +58,22 @@ public class Employee {
 		this.email = email;
 	}
 
-	public String getDesignation() {
+	public Designation getDesignation() {
 		return designation;
 	}
 
-	public void setDesignation(String designation) {
+	public void setDesignation(Designation designation) {
 		this.designation = designation;
 	}
+
+	
+
+	
+	public Employee() {
+	
+	}
+	
+	
+		
 
 }

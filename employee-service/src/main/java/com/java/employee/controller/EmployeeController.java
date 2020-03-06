@@ -23,13 +23,16 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService empService;
-
-//	private EmployeeRepository empRepo;
+	
+	@Autowired
+	private EmployeeRepository empRepo;
+	
 	private static Logger logger = LogManager.getLogger(EmployeeController.class);
 
 	@RequestMapping(value = "/saveemployee", method = RequestMethod.POST)
 	public Employee saveemployee(@RequestBody Employee employee) {
-		return empService.saveemployee(employee);
+		return empRepo.save(employee);
+//		return empService.saveemployee(employee);
 	}
 
 	@RequestMapping(value = "/listemployee", method = RequestMethod.GET)
