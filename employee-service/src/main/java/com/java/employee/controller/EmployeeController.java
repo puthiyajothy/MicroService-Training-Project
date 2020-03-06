@@ -42,7 +42,7 @@ public class EmployeeController {
 		return empService.getEmployeeById(id);
 	}
 
-	@RequestMapping("update/{id}") // update Employee Using ID
+	@RequestMapping(value="/update/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<String> updateemployee(@RequestBody Employee employee) {
 		try {
 			if (empService.updateemployee(employee) != null) {
@@ -55,4 +55,16 @@ public class EmployeeController {
 		return null;
 	}
 
+	@RequestMapping(value="/delete/{id}",method = RequestMethod.DELETE) // update Employee Using ID
+	public ResponseEntity<String> deleteEmployeeByempId(@PathVariable("id") Integer id) {
+		try {
+			logger.info("Employee Controller :-> DeleteEmployeeById");
+//			employeeDTOMapper.deleteByEmployeeId(empid.toUpperCase());
+			empService.deleteEmployeeByempId(id);
+			return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+		} catch (Exception ex) {
+			logger.error("Employee Controller :-> Error" + ex.getMessage());
+		}
+		return null;
+	}
 }

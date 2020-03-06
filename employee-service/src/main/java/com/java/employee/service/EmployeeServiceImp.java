@@ -2,7 +2,6 @@ package com.java.employee.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.logging.log4j.LogManager;
@@ -74,17 +73,17 @@ public class EmployeeServiceImp implements EmployeeService{
 	}
 
 	@Override
-	public void deleteEmployeeByempId(Long id) {
+	public void deleteEmployeeByempId(Integer id) {
 		try {
 			logger.info("Delete Employee Details Methods");
-//			empRepo.deleteById(id);
+			empRepo.deleteById(id);
 		} catch (Exception ex) {
 			logger.error("Employee Service Imp:--> Error" + ex.getMessage());
 		}
 	}
 
 	@Override
-	public List<Employee> getByDesignation(Long designationid) {
+	public List<Employee> getByDesignation(Integer designationid) {
 		// TODO Auto-generated method stub
 		return null;
 	}

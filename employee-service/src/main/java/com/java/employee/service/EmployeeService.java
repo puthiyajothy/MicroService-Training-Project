@@ -13,8 +13,8 @@ public interface  EmployeeService {
 	public Employee updateEmployee(Employee employee);
 	public List<Employee> getByName(String name);
 	public Employee getByEmail(String email);
-	public void deleteEmployeeByempId(Long id);
-	public List<Employee> getByDesignation(Long designationid);
+	public void deleteEmployeeByempId(Integer id);
+	public List<Employee> getByDesignation(Integer designationid);
 	public long count();
 	
 
