@@ -2,12 +2,18 @@ package com.java.project.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name="project")
@@ -19,6 +25,23 @@ public class Project implements Serializable{
 	private String name;
 	private Date startdate;
 	private Date enddate;
+	
+	
+	
+	
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@OneToMany(mappedBy="Project",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	private List<Module> module;
+
+	
+	
+	
+	public List<Module> getModule() {
+		return module;
+	}
+	public void setModule(List<Module> module) {
+		this.module = module;
+	}
 	public Integer getPro_id() {
 		return pro_id;
 	}
