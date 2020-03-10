@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name="module")
@@ -25,6 +27,12 @@ public class Module implements Serializable{
 	@JoinColumn(name = "pro_id", nullable = false)
 	private Project Project;
 
+	
+	@ManyToOne
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@JoinColumn(name="dev_id", nullable=false)
+	private Developer developer;
+	
 	public Integer getMod_id() {
 		return mod_id;
 	}
@@ -47,6 +55,14 @@ public class Module implements Serializable{
 
 	public void setProject(Project project) {
 		Project = project;
+	}
+
+	public Developer getDeveloper() {
+		return developer;
+	}
+
+	public void setDeveloper(Developer developer) {
+		this.developer = developer;
 	}
 	
 
