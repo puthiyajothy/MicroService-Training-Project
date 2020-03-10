@@ -8,4 +8,7 @@ public interface ProjectService {
 
 	public Project saveproject (Project project);
 	public List<Project>listproject();
+	public Project FindById(Integer id);
+	public Project updateproject(Project Project);
+	public void deleteprojectById(Integer id);
 }
