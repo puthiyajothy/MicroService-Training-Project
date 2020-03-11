@@ -10,7 +10,7 @@ public interface ResourceAllocationService {
 	
 	public List<ResourceAllocation> gettAllResource();
 	
-	public ResourceAllocation findResourceAllocationByresourceId(Long resourceId);
+	public ResourceAllocation findResourceAllocationByresourceId(Integer resourceId);
 
     public List<ResourceAllocation> getresourceById();
 

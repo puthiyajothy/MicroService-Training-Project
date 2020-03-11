@@ -20,20 +20,17 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 
 	@Override
 	public List<ResourceAllocation> gettAllResource() {
-		// TODO Auto-generated method stub
 		return resourceRepo.findAll();
 	}
 
 	@Override
-	public ResourceAllocation findResourceAllocationByresourceId(Long resourceId) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResourceAllocation findResourceAllocationByresourceId(Integer resourceId) {
+		return resourceRepo.findResourceAllocationByresourceId(resourceId);
 	}
 
 	@Override
 	public List<ResourceAllocation> getresourceById() {
-		// TODO Auto-generated method stub
-		return null;
+		return resourceRepo.getAllresourceId();
 	}
 
 }
