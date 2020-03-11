@@ -1,7 +1,12 @@
 package com.java.employee.model;
 
-public class ResourceAllocation {
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+public class ResourceAllocation {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer resourceId;
 	private Integer emp_id;
 

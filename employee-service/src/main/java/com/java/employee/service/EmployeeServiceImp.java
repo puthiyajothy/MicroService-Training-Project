@@ -7,8 +7,14 @@ import org.springframework.stereotype.Service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.data.domain.Example;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+
 import com.java.employee.model.Employee;
+import com.java.employee.model.ResourceAllocation;
 import com.java.employee.repository.EmployeeRepository;
+
+import HystrixCommand.ResourceAllocationCommand;
 
 @Service
 public class EmployeeServiceImp implements EmployeeService{
@@ -16,6 +22,9 @@ public class EmployeeServiceImp implements EmployeeService{
 	@Autowired
 	private  EmployeeRepository empRepo;
 
+	HttpHeaders httpHeaders = new HttpHeaders();
+	HttpEntity<String> httpEntity = new HttpEntity<>("", httpHeaders);
+	
 	private static Logger logger = LogManager.getLogger(EmployeeRepository.class);
 
 	@Override
@@ -96,15 +105,20 @@ public class EmployeeServiceImp implements EmployeeService{
 	}
 
 	@Override
-	public List<Employee> findByEmployee(Integer id) {
-		Employee employee=new Employee();
-        employee.setEmp_id(id);
-        Example <Employee> example=Example.of(employee);
-        List<Employee> employees=empRepo.findAll(example);
-        return employees;
+	public Employee getEmployee(Integer id) {
+		Optional<Employee> optionalEmployee = empRepo.findById(id);	
+		if (optionalEmployee.isPresent()) {
+			Employee employee = optionalEmployee.get();
+			employee.setResourceAllocation(fetchAllocation(employee));
+			return employee;
+		}
+		return null;
 	}
-	
-	
+
+	public ResourceAllocation[] fetchAllocation(Employee employee) {
+		ResourceAllocationCommand allocationCommand = new ResourceAllocationCommand(employee, httpHeaders, restTemplate);
+		return allocationCommand.execute();
+	}
 	
 
 }

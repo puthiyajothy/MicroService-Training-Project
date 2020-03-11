@@ -22,6 +22,8 @@ public class Employee implements Serializable {
 	private String name;
 	private String email;
 	
+	ResourceAllocation[] resourceAllocation;
+	
 	@ManyToOne
 	@JoinColumn(name = "desi_id", nullable = false)
 	private Designation designation;
@@ -72,6 +74,14 @@ public class Employee implements Serializable {
 	
 	public Employee() {
 	
+	}
+
+	public ResourceAllocation[] getResourceAllocation() {
+		return resourceAllocation;
+	}
+
+	public void setResourceAllocation(ResourceAllocation[] resourceAllocation) {
+		this.resourceAllocation = resourceAllocation;
 	}
 	
 	
