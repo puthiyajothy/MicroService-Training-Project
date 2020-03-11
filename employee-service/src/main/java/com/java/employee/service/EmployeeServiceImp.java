@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.data.domain.Example;
 import com.java.employee.model.Employee;
 import com.java.employee.repository.EmployeeRepository;
 
@@ -94,6 +95,14 @@ public class EmployeeServiceImp implements EmployeeService{
 		return 0;
 	}
 
+	@Override
+	public List<Employee> findByEmployee(Integer id) {
+		Employee employee=new Employee();
+        employee.setEmp_id(id);
+        Example <Employee> example=Example.of(employee);
+        List<Employee> employees=empRepo.findAll(example);
+        return employees;
+	}
 	
 	
 	

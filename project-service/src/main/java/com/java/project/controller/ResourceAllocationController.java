@@ -20,6 +20,7 @@ import com.java.project.service.ResourceAllocationService;
 public class ResourceAllocationController {
 	@Autowired
 	private ResourceAllocationService resourceService;
+	@SuppressWarnings("unused")
 	private static Logger logger = LogManager.getLogger(ResourceAllocationController.class);
 
 	
@@ -39,4 +40,12 @@ public class ResourceAllocationController {
 			return resourceService.findResourceAllocationByresourceId(resourceId);
 
 	}
+	 
+	 @RequestMapping(value = "/employeebyid/{id}", method = RequestMethod.GET)
+	    public ResourceAllocation[] getAllocationByEmpId(@PathVariable Integer id) {
+	        List<ResourceAllocation> all = resourceService.findByEmployeebyid(id);
+	        return all.toArray(new ResourceAllocation[all.size()]);
+	    }
+	 
+	 
 	}
