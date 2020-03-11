@@ -21,7 +21,7 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 	@Override
 	public List<ResourceAllocation> gettAllResource() {
 		// TODO Auto-generated method stub
-		return null;
+		return resourceRepo.findAll();
 	}
 
 	@Override
