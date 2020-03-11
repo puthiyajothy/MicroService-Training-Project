@@ -24,7 +24,7 @@ public class Developer implements Serializable{
 	private Integer dev_id;
 	private String name;
 	
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@OneToMany(mappedBy="developer",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Module> Module;
 
@@ -52,7 +52,7 @@ public class Developer implements Serializable{
 		Module = module;
 	}
 	
-
+	
 	
 
 }

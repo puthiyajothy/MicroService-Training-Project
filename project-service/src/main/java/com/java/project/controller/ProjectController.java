@@ -61,7 +61,7 @@ public class ProjectController {
 		return null;
 	}
 	
-	@RequestMapping(value="/delete/{id}",method = RequestMethod.DELETE) // update Employee Using ID
+	@RequestMapping(value="/delete/{id}",method = RequestMethod.DELETE) 
 	public ResponseEntity<String> deleteProject(@PathVariable("id") Integer id) {
 		try {
 			logger.info("Project Controller :-> DeleteProjectById");
