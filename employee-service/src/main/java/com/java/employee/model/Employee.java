@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "employee")
 
@@ -22,7 +23,7 @@ public class Employee implements Serializable {
 	private String name;
 	private String email;
 	
-	ResourceAllocation[] resourceAllocation;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "desi_id", nullable = false)
@@ -70,19 +71,13 @@ public class Employee implements Serializable {
 	}
 
 	
-
-	
 	public Employee() {
 	
 	}
 
-	public ResourceAllocation[] getResourceAllocation() {
-		return resourceAllocation;
-	}
+	
 
-	public void setResourceAllocation(ResourceAllocation[] resourceAllocation) {
-		this.resourceAllocation = resourceAllocation;
-	}
+	
 	
 	
 		

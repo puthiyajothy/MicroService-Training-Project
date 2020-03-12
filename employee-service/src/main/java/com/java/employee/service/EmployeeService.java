@@ -16,7 +16,8 @@ public interface  EmployeeService {
 	public void deleteEmployeeByempId(Integer id);
 	public List<Employee> getByDesignation(Integer designationid);
 	public long count();
-	public Employee getEmployee(Integer id);
+	public List<Employee> listByEmployeebyid(Integer id);
+
 	
 
 

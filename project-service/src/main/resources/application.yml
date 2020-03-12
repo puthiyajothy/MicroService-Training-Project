@@ -3,8 +3,6 @@ server:
     servlet:
         context-path: /projectservice
 spring:
-    application:
-        name: project-service
     datasource:
         password: root
         url: jdbc:mysql://localhost:3306/projectserviceDB?createDatabaseIfNotExist=true

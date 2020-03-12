@@ -16,8 +16,6 @@ import com.java.employee.model.Employee;
 import com.java.employee.repository.EmployeeRepository;
 import com.java.employee.service.EmployeeService;
 
-import net.bytebuddy.asm.Advice.Return;
-
 @RestController
 public class EmployeeController {
 
@@ -70,4 +68,10 @@ public class EmployeeController {
 		}
 		return null;
 	}
+	
+	@RequestMapping(value = "/employeebyid/{id}", method = RequestMethod.GET)
+    public Employee[] getlistByEmpId(@PathVariable Integer id) {
+        List<Employee> all = empService.listByEmployeebyid(id);
+        return all.toArray(new Employee[all.size()]);
+    }
 }

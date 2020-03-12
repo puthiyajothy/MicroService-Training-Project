@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,17 +33,19 @@ public class ResourceAllocationController {
 		
 	}
 	
-	 @RequestMapping(value = "/listresourceby/{resourceId}",method = RequestMethod.GET)
-		public ResourceAllocation listresourcebyid(@PathVariable("resourceId") Integer resourceId) {
-			return resourceService.findResourceAllocationByresourceId(resourceId);
+	 @RequestMapping(value = "/listresourceby/{id}",method = RequestMethod.GET)
+		public ResourceAllocation listresourcebyid(@PathVariable("resourceId") Integer id) {
+			return resourceService.findbyid(id);
 
 	}
 	 
-	 @RequestMapping(value = "/employeebyid/{id}", method = RequestMethod.GET)
-	    public ResourceAllocation[] getAllocationByEmpId(@PathVariable Integer id) {
-	        List<ResourceAllocation> all = resourceService.findByEmployeebyid(id);
-	        return all.toArray(new ResourceAllocation[all.size()]);
-	    }
+
+	 @RequestMapping(value = "/employee/{id}", method = RequestMethod.GET)
+		public ResourceAllocation getEmployeebyid(@PathVariable Integer id) {
+			return resourceService.getEmployee(id);
+		}
 	 
+	 
+
 	 
 	}

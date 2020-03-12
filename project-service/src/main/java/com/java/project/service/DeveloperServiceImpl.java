@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.project.model.Developer;
-import com.java.project.model.Project;
 import com.java.project.repository.DeveloperRepository;
 
 @Service

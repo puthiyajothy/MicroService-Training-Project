@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.java.employee.model.Designation;
-import com.java.employee.model.Employee;
 import com.java.employee.service.DesignationService;
 
 @RestController
 public class DesignationController {
-	
+
 	@Autowired
 	private DesignationService designationService;
 

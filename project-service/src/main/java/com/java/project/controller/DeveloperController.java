@@ -14,18 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.java.project.model.Developer;
-import com.java.project.model.Project;
 import com.java.project.service.DeveloperService;
 
 @RestController
 public class DeveloperController {
 	@Autowired
 	private DeveloperService developerService;
-	
-	@SuppressWarnings("unused")
+
 	private static Logger logger = LogManager.getLogger(DeveloperController.class);
 
-	
 	@RequestMapping(value = "/savedeveloper", method = RequestMethod.POST)
 	public Developer savedeveloper(@RequestBody Developer developer) {
 		return developerService.savedeveloper(developer);
@@ -35,7 +32,7 @@ public class DeveloperController {
 	public List<Developer> listdeveloper() {
 		return developerService.listdeveloper();
 	}
-	
+
 	@RequestMapping(value = "/listdeveloperby/{id}", method = RequestMethod.GET)
 	public Developer getdeveloper(@PathVariable Integer id) {
 		return developerService.findBydeveloperId(id);
@@ -43,15 +40,14 @@ public class DeveloperController {
 
 	@RequestMapping(value = "/deletedev/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteProject(@PathVariable("id") Integer id) {
-	try {
-		logger.info("Developer Controller :-> DeleteDeveloperById");
-		developerService.deletedeveloperById(id);
-		return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
-	} catch (Exception ex) {
-		logger.error("Developer Controller :-> Error" + ex.getMessage());
+		try {
+			logger.info("Developer Controller :-> DeleteDeveloperById");
+			developerService.deletedeveloperById(id);
+			return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+		} catch (Exception ex) {
+			logger.error("Developer Controller :-> Error" + ex.getMessage());
+		}
+		return null;
 	}
-	return null;
-}
-
 
 }

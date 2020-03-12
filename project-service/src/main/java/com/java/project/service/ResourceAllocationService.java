@@ -10,10 +10,13 @@ public interface ResourceAllocationService {
 	
 	public List<ResourceAllocation> gettAllResource();
 	
-	public ResourceAllocation findResourceAllocationByresourceId(Integer resourceId);
+	public ResourceAllocation findbyid(Integer id);
 
     public List<ResourceAllocation> getresourceById();
     
-	public List<ResourceAllocation> findByEmployeebyid(Integer id);
+	public ResourceAllocation getEmployee(Integer id);
+
+//	public List<ResourceAllocation> findByEmployeebyid(Integer id);
+	
 
 }

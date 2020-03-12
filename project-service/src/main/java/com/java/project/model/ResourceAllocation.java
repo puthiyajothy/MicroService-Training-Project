@@ -10,49 +10,52 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @SuppressWarnings("serial")
 @Entity
-@Table(name="resource_Allocation")
-public class ResourceAllocation implements Serializable{
+@Table(name = "resource_Allocation")
+public class ResourceAllocation implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer resourceId;
-	private Integer emp_id;
-	
-	
+	private Integer id;
+
+	Employee[] employee;
+
 	@ManyToOne
 	@JoinColumn(name = "pro_id", nullable = false)
 	private Project project;
 
+	
 
-	public Integer getResourceId() {
-		return resourceId;
+	public Integer getId() {
+		return id;
 	}
 
-
-	public void setResourceId(Integer resourceId) {
-		this.resourceId = resourceId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-
-
-	public Integer getEmp_id() {
-		return emp_id;
-	}
-
-
-	public void setEmp_id(Integer emp_id) {
-		this.emp_id = emp_id;
-	}
-
 
 	public Project getProject() {
 		return project;
 	}
 
-
 	public void setProject(Project project) {
 		this.project = project;
 	}
 
+	public Employee[] getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee[] employee) {
+		this.employee = employee;
+	}
+
 	
+	public ResourceAllocation() {
+
+	}
+
+	
+
 }

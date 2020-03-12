@@ -1,4 +1,4 @@
-package com.java.project.model;
+package shared;
 
 import java.io.Serializable;
 
@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import shared.Designation;
 
 @SuppressWarnings("serial")
 public class Employee implements Serializable {
@@ -19,9 +17,7 @@ public class Employee implements Serializable {
 	private Integer emp_id;
 	private String name;
 	private String email;
-	
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "desi_id", nullable = false)
 	private Designation designation;
@@ -34,7 +30,6 @@ public class Employee implements Serializable {
 		this.id = id;
 	}
 
-	
 	public Integer getEmp_id() {
 		return emp_id;
 	}
@@ -67,11 +62,8 @@ public class Employee implements Serializable {
 		this.designation = designation;
 	}
 
-	
 	public Employee() {
-	
-	}
 
-	
+	}
 
 }

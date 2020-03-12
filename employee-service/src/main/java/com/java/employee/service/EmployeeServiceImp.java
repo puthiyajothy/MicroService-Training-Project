@@ -3,28 +3,34 @@ package com.java.employee.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.data.domain.Example;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-
 import com.java.employee.model.Employee;
-import com.java.employee.model.ResourceAllocation;
 import com.java.employee.repository.EmployeeRepository;
 
-import HystrixCommand.ResourceAllocationCommand;
-
 @Service
-public class EmployeeServiceImp implements EmployeeService{
-	
-	@Autowired
-	private  EmployeeRepository empRepo;
+public class EmployeeServiceImp implements EmployeeService {
 
-	HttpHeaders httpHeaders = new HttpHeaders();
-	HttpEntity<String> httpEntity = new HttpEntity<>("", httpHeaders);
-	
+	@Autowired
+	private EmployeeRepository empRepo;
+
+	@Autowired
+	RestTemplate restTemplate;
+
+	@Bean
+	@LoadBalanced
+	RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
+
+//	HttpHeaders httpHeaders = new HttpHeaders();
+//	HttpEntity<String> httpEntity = new HttpEntity<>("", httpHeaders);
+
 	private static Logger logger = LogManager.getLogger(EmployeeRepository.class);
 
 	@Override
@@ -44,7 +50,7 @@ public class EmployeeServiceImp implements EmployeeService{
 
 	@Override
 	public Employee getEmployeeById(Integer id) {
-		Optional<Employee> optionalEmployee =empRepo.findById(id);
+		Optional<Employee> optionalEmployee = empRepo.findById(id);
 		if (optionalEmployee.isPresent()) {
 			Employee employee = optionalEmployee.get();
 			return employee;
@@ -56,7 +62,7 @@ public class EmployeeServiceImp implements EmployeeService{
 	public Employee updateEmployee(Employee employee) {
 		try {
 			Integer id = employee.getId();
-			boolean isExist = empRepo.findById(id)!=null;
+			boolean isExist = empRepo.findById(id) != null;
 			if (isExist) {
 				return empRepo.save(employee);
 			} else {
@@ -105,20 +111,13 @@ public class EmployeeServiceImp implements EmployeeService{
 	}
 
 	@Override
-	public Employee getEmployee(Integer id) {
-		Optional<Employee> optionalEmployee = empRepo.findById(id);	
-		if (optionalEmployee.isPresent()) {
-			Employee employee = optionalEmployee.get();
-			employee.setResourceAllocation(fetchAllocation(employee));
-			return employee;
-		}
-		return null;
-	}
+	public List<Employee> listByEmployeebyid(Integer id) {
+		Employee employee=new Employee();
+		employee.setEmp_id(id);
+        Example <Employee> example=Example.of(employee);
+        List<Employee> employee1=empRepo.findAll(example);
+        return employee1;
 
-	public ResourceAllocation[] fetchAllocation(Employee employee) {
-		ResourceAllocationCommand allocationCommand = new ResourceAllocationCommand(employee, httpHeaders, restTemplate);
-		return allocationCommand.execute();
-	}
-	
+	}	
 
 }
