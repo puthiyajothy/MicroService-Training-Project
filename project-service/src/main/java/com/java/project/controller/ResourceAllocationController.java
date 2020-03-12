@@ -26,6 +26,20 @@ public class ResourceAllocationController {
 	public ResourceAllocation saveresource(@RequestBody ResourceAllocation resourceAllocation) {
 		return resourceService.saveresource(resourceAllocation);
 	}
+	
+	
+//	<----This APIs Is --- Save List -- Use To Save Bulk Resource  --->
+	@RequestMapping(value="/savebulkresource" , method = RequestMethod.POST)
+	public void createResourceTable(@RequestBody List<ResourceAllocation> resourceAllocation) {
+		try {
+			logger.info("Resource Controller :--> Successfully Saved Bulk Data");
+			resourceService.saveResourceTable(resourceAllocation);
+//			resourceAllocationDtoMapper.saveResourceTable(resourceAllocationDto);
+		} catch (Exception ex) {
+			logger.error("Resource Controller :--> error" + ex.getMessage());
+		}
+
+	}
 
 	@RequestMapping(value = "/listresource",method = RequestMethod.GET)
 	public List<ResourceAllocation> listresource(){
