@@ -1,5 +1,6 @@
 package com.java.project.model;
 
+
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -17,17 +18,17 @@ public class RoleAllocation implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String role_id;
+	private Integer role_id;
 	
 	@ManyToOne
 	@JoinColumn(name = "sub_id", nullable = false)
 	private SubModule subModule;
 
-	public String getRole_id() {
+	public Integer getRole_id() {
 		return role_id;
 	}
 
-	public void setRole_id(String role_id) {
+	public void setRole_id(Integer role_id) {
 		this.role_id = role_id;
 	}
 
@@ -40,4 +41,7 @@ public class RoleAllocation implements Serializable {
 	}
 
 	
+	
+
+		
 }

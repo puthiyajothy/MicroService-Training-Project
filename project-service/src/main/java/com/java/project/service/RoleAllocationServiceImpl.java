@@ -11,7 +11,7 @@ import com.java.project.repository.RoleAllocationRepository;
 @Service
 public class RoleAllocationServiceImpl implements RoleAllocationService {
 	@Autowired
-	private RoleAllocationRepository roleRepo;
+	RoleAllocationRepository roleRepo;
 	
 
 	@Override
@@ -23,7 +23,7 @@ public class RoleAllocationServiceImpl implements RoleAllocationService {
 	@Override
 	public List<RoleAllocation> listrole() {
 		// TODO Auto-generated method stub
-		return null;
+		return roleRepo.findAll();
 	}
 
 	@Override
